@@ -1,4 +1,5 @@
-package by.grits;
+package by.grits.Gems;
+
 
 public class Main {
 

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<gems>
+    <gem id="1">
+        <name>Ruby</name>
+        <preciousness>SEMI_PRECIOUS</preciousness>
+        <origin>Brazil</origin>
+        <visualParameters>
+            <color>RED</color>
+            <transparency>10</transparency>
+            <facesAmount>10</facesAmount>
+        </visualParameters>
+        <value>200.15</value>
+        <addedAt>2022-03-30 11:11:11</addedAt>
+    </gem>
+    <gem id="2">
+        <name>Diamond</name>
+        <preciousness>PRECIOUS</preciousness>
+        <origin>North America</origin>
+        <visualParameters>
+            <color>TRANSPARENT</color>
+            <transparency>3</transparency>
+            <facesAmount>15</facesAmount>
+        </visualParameters>
+        <value>150.01</value>
+        <addedAt>2022-03-30 12:11:11</addedAt>
+    </gem>
+    <gem id="3">
+        <name>Quartz</name>
+        <preciousness>PRECIOUS</preciousness>
+        <origin>North Africa</origin>
+        <visualParameters>
+            <color>PINK</color>
+            <transparency>13</transparency>
+            <facesAmount>6</facesAmount>
+        </visualParameters>
+        <value>110.25</value>
+        <addedAt>2022-03-30 11:12:11</addedAt>
+    </gem>
+</gems>
