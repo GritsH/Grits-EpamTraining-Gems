@@ -1,6 +1,6 @@
-package by.grits.Gems.entity;
+package by.grits.gems.entity;
 
-import by.grits.Gems.entity.enums.Color;
+import by.grits.gems.entity.enums.Color;
 
 public class VisualParameters {
     private Color color;

@@ -1,11 +1,10 @@
-package by.grits.Gems.entity;
+package by.grits.gems.entity;
 
-import by.grits.Gems.entity.enums.Preciousness;
+import by.grits.gems.entity.enums.Preciousness;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Objects;
 
 @XmlRootElement(name = "Gems")
@@ -14,7 +13,7 @@ public class Gem {
   @XmlAttribute private String name;
   @XmlAttribute private Preciousness preciousness;
   @XmlAttribute private String origin;
-  @XmlAttribute private List<VisualParameters> visualParametersList;
+  @XmlAttribute private VisualParameters visualParameters;
   @XmlAttribute private double value;
   @XmlAttribute private LocalDateTime addedAt;
 
@@ -25,14 +24,14 @@ public class Gem {
       String name,
       Preciousness preciousness,
       String origin,
-      List<VisualParameters> visualParametersList,
+     VisualParameters visualParametersList,
       double value,
       LocalDateTime addedAt) {
     this.id = id;
     this.name = name;
     this.preciousness = preciousness;
     this.origin = origin;
-    this.visualParametersList = visualParametersList;
+    this.visualParameters = visualParametersList;
     this.value = value;
     this.addedAt = addedAt;
   }
@@ -69,12 +68,12 @@ public class Gem {
     this.origin = origin;
   }
 
-  public List<VisualParameters> getVisualParametersList() {
-    return visualParametersList;
+  public VisualParameters getVisualParameters() {
+    return visualParameters;
   }
 
-  public void setVisualParametersList(List<VisualParameters> visualParametersList) {
-    this.visualParametersList = visualParametersList;
+  public void setVisualParameters(VisualParameters visualParameters) {
+    this.visualParameters = visualParameters;
   }
 
   public double getValue() {
@@ -103,13 +102,13 @@ public class Gem {
         && Objects.equals(name, gem.name)
         && preciousness == gem.preciousness
         && Objects.equals(origin, gem.origin)
-        && Objects.equals(visualParametersList, gem.visualParametersList)
+        && Objects.equals(visualParameters, gem.visualParameters)
         && Objects.equals(addedAt, gem.addedAt);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, preciousness, origin, visualParametersList, value, addedAt);
+    return Objects.hash(id, name, preciousness, origin, visualParameters, value, addedAt);
   }
 
   @Override
@@ -126,7 +125,7 @@ public class Gem {
         + origin
         + '\''
         + ", visualParametersList="
-        + visualParametersList
+        + visualParameters
         + ", value="
         + value
         + ", addedAt="

@@ -1,4 +1,4 @@
-package by.grits.Gems.entity.enums;
+package by.grits.gems.entity.enums;
 
 public enum Preciousness {
     PRECIOUS,
