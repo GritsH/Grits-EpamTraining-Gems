@@ -40,7 +40,9 @@ public class DOMParser {
       Element element = (Element) gemNode;
       NodeList gemElements = gemNode.getChildNodes();
 
-      for (int gemElementsIterator = 0; gemElementsIterator < gemElements.getLength(); gemElementsIterator++) {
+      for (int gemElementsIterator = 0;
+          gemElementsIterator < gemElements.getLength();
+          gemElementsIterator++) {
         Node gemElement = gemElements.item(gemElementsIterator);
         gem.setId(Integer.parseInt(element.getAttribute("id")));
         if ("name".equals(gemElement.getNodeName())) {
@@ -63,7 +65,9 @@ public class DOMParser {
         }
         if ("visualParameters".equals(gemElement.getNodeName())) {
           NodeList parametersList = gemElement.getChildNodes();
-          for (int parametersIterator = 0; parametersIterator < parametersList.getLength(); parametersIterator++) {
+          for (int parametersIterator = 0;
+              parametersIterator < parametersList.getLength();
+              parametersIterator++) {
             Node parametersElement = parametersList.item(parametersIterator);
             if ("color".equals(parametersElement.getNodeName())) {
               visualParameters.setColor(Color.valueOf(parametersElement.getTextContent()));
@@ -78,8 +82,8 @@ public class DOMParser {
           }
         }
         gem.setVisualParameters(visualParameters);
-        gems.add(gem);
       }
+      gems.add(gem);
     }
     return gems;
   }

@@ -23,8 +23,8 @@ import java.util.Locale;
 public class StAXParser {
   public List<Gem> readXMLSTAXParser(String path) {
     List<Gem> gems = new ArrayList<>();
-    Gem gem = new Gem();
-    VisualParameters visualParameters = new VisualParameters();
+    Gem gem = null;
+    VisualParameters visualParameters = null;
 
     XMLInputFactory xmlInputFactory = XMLInputFactory.newInstance();
     try {
@@ -35,6 +35,7 @@ public class StAXParser {
         if (xmlEvent.isStartElement()) {
           StartElement startElement = xmlEvent.asStartElement();
           if ("gem".equals(startElement.getName().getLocalPart())) {
+            gem = new Gem();
             gem.setId(
                 Integer.parseInt(startElement.getAttributeByName(new QName("id")).getValue()));
           } else if ("name".equals(startElement.getName().getLocalPart())) {
@@ -47,7 +48,7 @@ public class StAXParser {
             xmlEvent = xmlEventReader.nextEvent();
             gem.setOrigin(xmlEvent.asCharacters().getData());
           } else if ("visualParameters".equals(startElement.getName().getLocalPart())) {
-            // visualParameters = new VisualParameters();
+            visualParameters = new VisualParameters();
             xmlEvent = xmlEventReader.nextEvent();
           } else if ("color".equals(startElement.getName().getLocalPart())) {
             xmlEvent = xmlEventReader.nextEvent();
