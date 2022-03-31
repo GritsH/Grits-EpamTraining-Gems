@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Locale;
 
 public class StAXParser {
-  public List<Gem> readXMLSTAXParser() {
+  public List<Gem> readXMLSTAXParser(String path) {
     List<Gem> gems = new ArrayList<>();
     Gem gem = new Gem();
     VisualParameters visualParameters = new VisualParameters();
@@ -29,13 +29,12 @@ public class StAXParser {
     XMLInputFactory xmlInputFactory = XMLInputFactory.newInstance();
     try {
       XMLEventReader xmlEventReader =
-          xmlInputFactory.createXMLEventReader(new FileInputStream("src/main/resources/gems.xml"));
+          xmlInputFactory.createXMLEventReader(new FileInputStream(path));
       while (xmlEventReader.hasNext()) {
         XMLEvent xmlEvent = xmlEventReader.nextEvent();
         if (xmlEvent.isStartElement()) {
           StartElement startElement = xmlEvent.asStartElement();
           if ("gem".equals(startElement.getName().getLocalPart())) {
-            // gem = new Gem();
             gem.setId(
                 Integer.parseInt(startElement.getAttributeByName(new QName("id")).getValue()));
           } else if ("name".equals(startElement.getName().getLocalPart())) {

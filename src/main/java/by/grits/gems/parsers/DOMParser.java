@@ -22,26 +22,26 @@ import java.util.List;
 import java.util.Locale;
 
 public class DOMParser {
-  public List<Gem> readXMLDOMParser()
+  public List<Gem> readXMLDOMParser(String path)
       throws ParserConfigurationException, IOException, SAXException {
     List<Gem> gems = new ArrayList<>();
     Gem gem;
 
     DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
     DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
-    Document document = documentBuilder.parse(new File("src/main/resources/gems.xml"));
+    Document document = documentBuilder.parse(new File(path));
     document.getDocumentElement().normalize();
 
-    NodeList gemList = document.getElementsByTagName("gem");
-    for (int i = 0; i < gemList.getLength(); i++) {
+    NodeList gemNodes = document.getElementsByTagName("gem");
+    for (int gemNodesIterator = 0; gemNodesIterator < gemNodes.getLength(); gemNodesIterator++) {
       gem = new Gem();
       VisualParameters visualParameters = new VisualParameters();
-      Node gemNode = gemList.item(i);
+      Node gemNode = gemNodes.item(gemNodesIterator);
       Element element = (Element) gemNode;
       NodeList gemElements = gemNode.getChildNodes();
 
-      for (int j = 0; j < gemElements.getLength(); j++) {
-        Node gemElement = gemElements.item(j);
+      for (int gemElementsIterator = 0; gemElementsIterator < gemElements.getLength(); gemElementsIterator++) {
+        Node gemElement = gemElements.item(gemElementsIterator);
         gem.setId(Integer.parseInt(element.getAttribute("id")));
         if ("name".equals(gemElement.getNodeName())) {
           gem.setName(gemElement.getTextContent());
@@ -63,8 +63,8 @@ public class DOMParser {
         }
         if ("visualParameters".equals(gemElement.getNodeName())) {
           NodeList parametersList = gemElement.getChildNodes();
-          for (int k = 0; k < parametersList.getLength(); k++) {
-            Node parametersElement = parametersList.item(k);
+          for (int parametersIterator = 0; parametersIterator < parametersList.getLength(); parametersIterator++) {
+            Node parametersElement = parametersList.item(parametersIterator);
             if ("color".equals(parametersElement.getNodeName())) {
               visualParameters.setColor(Color.valueOf(parametersElement.getTextContent()));
             }

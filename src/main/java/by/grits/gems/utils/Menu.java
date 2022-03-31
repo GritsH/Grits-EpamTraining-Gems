@@ -51,7 +51,7 @@ public class Menu {
         case "1":
           DOMParser domParser = new DOMParser();
           DataPrinter dataPrinter = new DataPrinter();
-          dataPrinter.printData(domParser.readXMLDOMParser());
+          dataPrinter.printData(domParser.readXMLDOMParser("src/main/resources/gems.xml"));
           break;
         case "2":
           showMainMenu();
@@ -70,7 +70,7 @@ public class Menu {
         case "1":
           StAXParser stAXParser = new StAXParser();
           DataPrinter dataPrinter = new DataPrinter();
-          dataPrinter.printData(stAXParser.readXMLSTAXParser());
+          dataPrinter.printData(stAXParser.readXMLSTAXParser("src/main/resources/gems.xml"));
           break;
         case "2":
           showMainMenu();
