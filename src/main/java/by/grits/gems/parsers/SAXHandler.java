@@ -15,10 +15,10 @@ import java.util.List;
 import java.util.Locale;
 
 public class SAXHandler extends DefaultHandler {
-  private StringBuilder currentValue = new StringBuilder();
   List<Gem> gems;
   VisualParameters visualParameters;
   Gem gem;
+  private StringBuilder currentValue = new StringBuilder();
 
   public List<Gem> getGems() {
     return gems;
@@ -70,7 +70,7 @@ public class SAXHandler extends DefaultHandler {
 
   @Override
   public void endElement(String uri, String localName, String qName) throws SAXException {
-    if("gem".equals(qName)){
+    if ("gem".equals(qName)) {
       gem.setVisualParameters(visualParameters);
       gems.add(gem);
     }

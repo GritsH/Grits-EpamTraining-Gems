@@ -24,7 +24,7 @@ public class Gem {
       String name,
       Preciousness preciousness,
       String origin,
-     VisualParameters visualParametersList,
+      VisualParameters visualParametersList,
       double value,
       LocalDateTime addedAt) {
     this.id = id;

@@ -35,7 +35,7 @@ public class StAXParser {
         if (xmlEvent.isStartElement()) {
           StartElement startElement = xmlEvent.asStartElement();
           if ("gem".equals(startElement.getName().getLocalPart())) {
-            //gem = new Gem();
+            // gem = new Gem();
             gem.setId(
                 Integer.parseInt(startElement.getAttributeByName(new QName("id")).getValue()));
           } else if ("name".equals(startElement.getName().getLocalPart())) {
@@ -47,19 +47,19 @@ public class StAXParser {
           } else if ("origin".equals(startElement.getName().getLocalPart())) {
             xmlEvent = xmlEventReader.nextEvent();
             gem.setOrigin(xmlEvent.asCharacters().getData());
-          }else if("visualParameters".equals(startElement.getName().getLocalPart())){
-            //visualParameters = new VisualParameters();
+          } else if ("visualParameters".equals(startElement.getName().getLocalPart())) {
+            // visualParameters = new VisualParameters();
             xmlEvent = xmlEventReader.nextEvent();
-          }else if("color".equals(startElement.getName().getLocalPart())){
+          } else if ("color".equals(startElement.getName().getLocalPart())) {
             xmlEvent = xmlEventReader.nextEvent();
             visualParameters.setColor(Color.valueOf(xmlEvent.asCharacters().getData()));
-          }else if("transparency".equals(startElement.getName().getLocalPart())){
+          } else if ("transparency".equals(startElement.getName().getLocalPart())) {
             xmlEvent = xmlEventReader.nextEvent();
             visualParameters.setTransparency(Integer.parseInt(xmlEvent.asCharacters().getData()));
-          }else if("facesAmount".equals(startElement.getName().getLocalPart())){
+          } else if ("facesAmount".equals(startElement.getName().getLocalPart())) {
             xmlEvent = xmlEventReader.nextEvent();
             visualParameters.setFacesAmount(Integer.parseInt(xmlEvent.asCharacters().getData()));
-          }else if ("value".equals(startElement.getName().getLocalPart())) {
+          } else if ("value".equals(startElement.getName().getLocalPart())) {
             xmlEvent = xmlEventReader.nextEvent();
             gem.setValue(Double.parseDouble(xmlEvent.asCharacters().getData()));
           } else if ("addedAt".equals(startElement.getName().getLocalPart())) {

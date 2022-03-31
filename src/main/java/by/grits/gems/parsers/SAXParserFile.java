@@ -10,14 +10,14 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-
 public class SAXParserFile {
 
-    public List<Gem> parseFile(String path) throws ParserConfigurationException, SAXException, IOException {
-        SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
-        SAXParser parser = saxParserFactory.newSAXParser();
-        SAXHandler saxHandler = new SAXHandler();
-        parser.parse(new File(path), saxHandler);
-        return saxHandler.getGems();
-    }
+  public List<Gem> parseFile(String path)
+      throws ParserConfigurationException, SAXException, IOException {
+    SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
+    SAXParser parser = saxParserFactory.newSAXParser();
+    SAXHandler saxHandler = new SAXHandler();
+    parser.parse(new File(path), saxHandler);
+    return saxHandler.getGems();
+  }
 }
