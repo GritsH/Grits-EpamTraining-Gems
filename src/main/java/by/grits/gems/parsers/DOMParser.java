@@ -34,45 +34,50 @@ public class DOMParser {
 
     NodeList gemList = document.getElementsByTagName("gem");
     for (int i = 0; i < gemList.getLength(); i++) {
+      gem = new Gem();
+      VisualParameters visualParameters = new VisualParameters();
       Node gemNode = gemList.item(i);
+      Element element = (Element) gemNode;
+      NodeList gemElements = gemNode.getChildNodes();
 
-      if (gemNode.getNodeType() == Node.ELEMENT_NODE) {
-        Element element = (Element) gemNode;
-
-        gem = new Gem();
+      for(int j=0; j<gemElements.getLength(); j++){
+        Node gemElement = gemElements.item(j);
         gem.setId(Integer.parseInt(element.getAttribute("id")));
-        gem.setName(element.getElementsByTagName("name").item(0).getTextContent());
-        gem.setPreciousness(
-            Preciousness.valueOf(
-                element.getElementsByTagName("preciousness").item(0).getTextContent()));
-        gem.setOrigin(element.getElementsByTagName("origin").item(0).getTextContent());
-        if ("visualParameters".equals(element.getNodeName())) {
-          VisualParameters visualParameters = new VisualParameters();
-          NodeList visualParametersList = element.getChildNodes();
-          for (int j = 0; j < visualParametersList.getLength(); j++) {
-            Node parametersElement = visualParametersList.item(j);
-            if ("color".equals(parametersElement.getNodeName())) {
+        if("name".equals(gemElement.getNodeName())){
+          gem.setName(gemElement.getTextContent());
+        }
+        if("preciousness".equals(gemElement.getNodeName())){
+          gem.setPreciousness(Preciousness.valueOf(gemElement.getTextContent()));
+        }
+        if("origin".equals(gemElement.getNodeName())){
+          gem.setOrigin(gemElement.getTextContent());
+        }
+        if("value".equals(gemElement.getNodeName())){
+          gem.setValue(Double.parseDouble(gemElement.getTextContent()));
+        }
+        if("addedAt".equals(gemElement.getNodeName())){
+          gem.setAddedAt(LocalDateTime.parse(gemElement.getTextContent(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss", Locale.ROOT)));
+        }
+        if("visualParameters".equals(gemElement.getNodeName())){
+          NodeList parametersList = gemElement.getChildNodes();
+          for(int k=0; k<parametersList.getLength(); k++){
+            Node parametersElement = parametersList.item(k);
+            if("color".equals(parametersElement.getNodeName())){
               visualParameters.setColor(Color.valueOf(parametersElement.getTextContent()));
-            } else if ("transparency".equals(parametersElement.getNodeName())) {
-              visualParameters.setTransparency(
-                  Integer.parseInt(parametersElement.getTextContent()));
-            } else if ("facesAmount".equals(parametersElement.getNodeName())) {
+            }
+            if("facesAmount".equals(parametersElement.getNodeName())){
               visualParameters.setFacesAmount(Integer.parseInt(parametersElement.getTextContent()));
             }
+            if("transparency".equals(parametersElement.getNodeName())){
+              visualParameters.setTransparency(Integer.parseInt(parametersElement.getTextContent()));
+            }
           }
-          gem.setVisualParameters(visualParameters);
         }
-        gem.setValue(
-            Double.parseDouble(element.getElementsByTagName("value").item(0).getTextContent()));
-        gem.setAddedAt(
-            LocalDateTime.parse(
-                String.valueOf(element.getElementsByTagName("addedAt").item(0).getTextContent()),
-                DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss", Locale.ROOT)));
-
+        gem.setVisualParameters(visualParameters);
         gems.add(gem);
       }
-    }
 
+    }
     return gems;
   }
 }
