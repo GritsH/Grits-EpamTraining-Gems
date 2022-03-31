@@ -70,6 +70,10 @@ public class SAXHandler extends DefaultHandler {
 
   @Override
   public void endElement(String uri, String localName, String qName) throws SAXException {
+    if("gem".equals(qName)){
+      gem.setVisualParameters(visualParameters);
+      gems.add(gem);
+    }
     if ("id".equals(qName)) {
       gem.setId(Integer.parseInt(String.valueOf(currentValue)));
     }
