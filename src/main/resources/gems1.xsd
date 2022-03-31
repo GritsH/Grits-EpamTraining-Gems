@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema
+        targetNamespace="http://grits.by"
+        elementFormDefault="qualified"
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <xsd:element name="gems" type="grit:gemsType" xmlns:grit="http://grits.by"/>
+    <xsd:complexType name="visualParametersType">
+        <xsd:sequence>
+            <xsd:element name="color">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:enumeration value="RED"/>
+                        <xsd:enumeration value="BLUE"/>
+                        <xsd:enumeration value="PURPLE"/>
+                        <xsd:enumeration value="TRANSPARENT"/>
+                        <xsd:enumeration value="YELLOW"/>
+                        <xsd:enumeration value="BLACK"/>
+                        <xsd:enumeration value="WHITE"/>
+                        <xsd:enumeration value="PINK"/>
+                        <xsd:enumeration value="ORANGE"/>
+                        <xsd:enumeration value="GREEN"/>
+                        <xsd:enumeration value="BROWN"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="transparency">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:positiveInteger">
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="facesAmount">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:pattern value="([4-9]|1[0-5])"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="gemType">
+        <xsd:sequence>
+            <xsd:element name="name">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="preciousness">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:enumeration value="SEMI_PRECIOUS"/>
+                        <xsd:enumeration value="PRECIOUS"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="origin">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element type="grit:visualParametersType" name="visualParameters" xmlns:grit="http://grits.by"/>
+            <xsd:element name="value">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:double">
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="addedAt">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+<!--                        <xsd:pattern value="[1-9][0-9]{3}\-.+?T[^\.]+?(Z|[\+\-].+)"/>-->
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+        </xsd:sequence>
+        <xsd:attribute type="xsd:string" name="id" use="required"/>
+    </xsd:complexType>
+    <xsd:complexType name="gemsType">
+        <xsd:sequence>
+            <xsd:element type="grit:gemType" name="gem" maxOccurs="unbounded" minOccurs="0"
+                         xmlns:grit="http://grits.by"/>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>
