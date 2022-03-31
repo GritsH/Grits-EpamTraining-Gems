@@ -15,8 +15,10 @@ import java.util.Scanner;
 public class Menu {
   private static final Logger LOGGER = LogManager.getLogger();
   private final Scanner scanner = new Scanner(System.in, StandardCharsets.UTF_8);
+  private XMLValidator validator = new XMLValidator();
 
   public void showMainMenu() throws ParserConfigurationException, IOException, SAXException {
+    String path = "src/main/resources/gems.xml";
 
     while (true) {
       LOGGER.info("1 - DOM");
@@ -26,13 +28,13 @@ public class Menu {
 
       switch (scanner.nextLine()) {
         case "1":
-          DOMMenu();
+          DOMMenu(path);
           break;
         case "2":
-          StAXMenu();
+          StAXMenu(path);
           break;
         case "3":
-          SAXMenu();
+          SAXMenu(path);
           break;
         case "e":
           System.exit(0);
@@ -43,59 +45,65 @@ public class Menu {
     }
   }
 
-  public void DOMMenu() throws ParserConfigurationException, IOException, SAXException {
-    while (true) {
-      LOGGER.info("1 - read file");
-      LOGGER.info("2 - back");
-      switch (scanner.nextLine()) {
-        case "1":
-          DOMParser domParser = new DOMParser();
-          DataPrinter dataPrinter = new DataPrinter();
-          dataPrinter.printData(domParser.readXMLDOMParser("src/main/resources/gems.xml"));
-          break;
-        case "2":
-          showMainMenu();
-          break;
-        default:
-          LOGGER.info("no such command");
+  public void DOMMenu(String path) throws ParserConfigurationException, IOException, SAXException {
+    if (validator.validateXMLSchema("src/main/resources/gems1.xsd", path)) {
+      while (true) {
+        LOGGER.info("1 - read file");
+        LOGGER.info("2 - back");
+        switch (scanner.nextLine()) {
+          case "1":
+            DOMParser domParser = new DOMParser();
+            DataPrinter dataPrinter = new DataPrinter();
+            dataPrinter.printData(domParser.readXMLDOMParser(path));
+            break;
+          case "2":
+            showMainMenu();
+            break;
+          default:
+            LOGGER.info("no such command");
+        }
       }
     }
   }
 
-  public void StAXMenu() throws ParserConfigurationException, IOException, SAXException {
-    while (true) {
-      LOGGER.info("1 - read file");
-      LOGGER.info("2 - back");
-      switch (scanner.nextLine()) {
-        case "1":
-          StAXParser stAXParser = new StAXParser();
-          DataPrinter dataPrinter = new DataPrinter();
-          dataPrinter.printData(stAXParser.readXMLSTAXParser("src/main/resources/gems.xml"));
-          break;
-        case "2":
-          showMainMenu();
-          break;
-        default:
-          LOGGER.info("no such command");
+  public void StAXMenu(String path) throws ParserConfigurationException, IOException, SAXException {
+    if (validator.validateXMLSchema("src/main/resources/gems1.xsd", path)) {
+      while (true) {
+        LOGGER.info("1 - read file");
+        LOGGER.info("2 - back");
+        switch (scanner.nextLine()) {
+          case "1":
+            StAXParser stAXParser = new StAXParser();
+            DataPrinter dataPrinter = new DataPrinter();
+            dataPrinter.printData(stAXParser.readXMLSTAXParser(path));
+            break;
+          case "2":
+            showMainMenu();
+            break;
+          default:
+            LOGGER.info("no such command");
+        }
       }
     }
   }
 
-  public void SAXMenu() throws ParserConfigurationException, IOException, SAXException {
-    while (true) {
-      LOGGER.info("1 - read file");
-      LOGGER.info("2 - back");
-      switch (scanner.nextLine()) {
-        case "1":
-          SAXParserFile saxParserFile = new SAXParserFile();
-          DataPrinter dataPrinter = new DataPrinter();
-          dataPrinter.printData(saxParserFile.parseFile("src/main/resources/gems.xml"));
-          break;
-        case "2":
-          showMainMenu();
-          break;
-        default:
-          LOGGER.info("no such command");
+  public void SAXMenu(String path) throws ParserConfigurationException, IOException, SAXException {
+    if (validator.validateXMLSchema("src/main/resources/gems1.xsd", path)) {
+      while (true) {
+        LOGGER.info("1 - read file");
+        LOGGER.info("2 - back");
+        switch (scanner.nextLine()) {
+          case "1":
+            SAXParserFile saxParserFile = new SAXParserFile();
+            DataPrinter dataPrinter = new DataPrinter();
+            dataPrinter.printData(saxParserFile.parseFile(path));
+            break;
+          case "2":
+            showMainMenu();
+            break;
+          default:
+            LOGGER.info("no such command");
+        }
       }
     }
   }
