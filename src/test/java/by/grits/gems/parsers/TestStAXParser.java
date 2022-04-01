@@ -4,7 +4,6 @@ import by.grits.gems.entity.Gem;
 import by.grits.gems.entity.VisualParameters;
 import by.grits.gems.entity.enums.Color;
 import by.grits.gems.entity.enums.Preciousness;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -14,12 +13,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 class TestStAXParser {
   Gem gem1;
   Gem gem2;
   Gem gem3;
   private StAXParser staxParser;
-  private List<Gem> gems;
+  private List<Gem> expectedGems;
 
   @BeforeEach
   public void setup() {
@@ -58,60 +59,54 @@ class TestStAXParser {
                 DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss", Locale.ROOT)));
 
     staxParser = new StAXParser();
-    gems = new ArrayList<>();
+    expectedGems = new ArrayList<>();
   }
 
   @Test
   void shouldParseXMLWithThree() {
-    gems.add(gem1);
-    gems.add(gem2);
-    gems.add(gem3);
+    expectedGems.add(gem1);
+    expectedGems.add(gem2);
+    expectedGems.add(gem3);
 
     List<Gem> resultGems = staxParser.readXMLSTAXParser("src/test/resources/testGems3.xml");
-    for (int gemIterator = 0; gemIterator < resultGems.size(); gemIterator++) {
-      Assertions.assertEquals(gems.get(gemIterator).getId(), resultGems.get(gemIterator).getId());
-      Assertions.assertEquals(
-          gems.get(gemIterator).getName(), resultGems.get(gemIterator).getName());
-      Assertions.assertEquals(
-          gems.get(gemIterator).getValue(), resultGems.get(gemIterator).getValue());
-      Assertions.assertEquals(
-          gems.get(gemIterator).getOrigin(), resultGems.get(gemIterator).getOrigin());
-      Assertions.assertEquals(
-          gems.get(gemIterator).getAddedAt(), resultGems.get(gemIterator).getAddedAt());
-      Assertions.assertEquals(
-          gems.get(gemIterator).getPreciousness(), resultGems.get(gemIterator).getPreciousness());
-      Assertions.assertEquals(
-          gems.get(gemIterator).getVisualParameters().getColor(),
-          resultGems.get(gemIterator).getVisualParameters().getColor());
+    for (int gemIndx = 0; gemIndx < resultGems.size(); gemIndx++) {
+      Gem expectedGem = expectedGems.get(gemIndx);
+      Gem resultGem = resultGems.get(gemIndx);
+
+      assertEquals(expectedGem.getId(), resultGem.getId());
+      assertEquals(expectedGem.getName(), resultGem.getName());
+      assertEquals(expectedGem.getValue(), resultGem.getValue());
+      assertEquals(expectedGem.getOrigin(), resultGem.getOrigin());
+      assertEquals(expectedGem.getAddedAt(), resultGem.getAddedAt());
+      assertEquals(expectedGem.getPreciousness(), resultGem.getPreciousness());
+      assertEquals(
+          expectedGem.getVisualParameters().getColor(), resultGem.getVisualParameters().getColor());
     }
   }
 
   @Test
   void shouldParseXMLWithOne() {
-    gems.add(gem1);
+    expectedGems.add(gem1);
 
     List<Gem> resultGems = staxParser.readXMLSTAXParser("src/test/resources/testGems1.xml");
-    for (int gemIterator = 0; gemIterator < resultGems.size(); gemIterator++) {
-      Assertions.assertEquals(gems.get(gemIterator).getId(), resultGems.get(gemIterator).getId());
-      Assertions.assertEquals(
-          gems.get(gemIterator).getName(), resultGems.get(gemIterator).getName());
-      Assertions.assertEquals(
-          gems.get(gemIterator).getValue(), resultGems.get(gemIterator).getValue());
-      Assertions.assertEquals(
-          gems.get(gemIterator).getOrigin(), resultGems.get(gemIterator).getOrigin());
-      Assertions.assertEquals(
-          gems.get(gemIterator).getAddedAt(), resultGems.get(gemIterator).getAddedAt());
-      Assertions.assertEquals(
-          gems.get(gemIterator).getPreciousness(), resultGems.get(gemIterator).getPreciousness());
-      Assertions.assertEquals(
-          gems.get(gemIterator).getVisualParameters().getColor(),
-          resultGems.get(gemIterator).getVisualParameters().getColor());
+    for (int gemIndx = 0; gemIndx < resultGems.size(); gemIndx++) {
+      Gem expectedGem = expectedGems.get(gemIndx);
+      Gem resultGem = resultGems.get(gemIndx);
+
+      assertEquals(expectedGem.getId(), resultGem.getId());
+      assertEquals(expectedGem.getName(), resultGem.getName());
+      assertEquals(expectedGem.getValue(), resultGem.getValue());
+      assertEquals(expectedGem.getOrigin(), resultGem.getOrigin());
+      assertEquals(expectedGem.getAddedAt(), resultGem.getAddedAt());
+      assertEquals(expectedGem.getPreciousness(), resultGem.getPreciousness());
+      assertEquals(
+          expectedGem.getVisualParameters().getColor(), resultGem.getVisualParameters().getColor());
     }
   }
 
   @Test
   void shouldParseEmptyXML() {
     List<Gem> resultGems = staxParser.readXMLSTAXParser("src/test/resources/testGems0.xml");
-    Assertions.assertEquals(gems.size(), resultGems.size());
+    assertEquals(expectedGems.size(), resultGems.size());
   }
 }
