@@ -7,6 +7,14 @@ public class VisualParameters {
   private int transparency;
   private int facesAmount;
 
+  public VisualParameters() {}
+
+  public VisualParameters(Color color, int transparency, int facesAmount) {
+    this.color = color;
+    this.transparency = transparency;
+    this.facesAmount = facesAmount;
+  }
+
   public Color getColor() {
     return color;
   }

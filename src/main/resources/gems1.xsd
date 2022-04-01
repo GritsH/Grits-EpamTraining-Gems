@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsd:schema
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema"
         targetNamespace="http://grits.by"
-        elementFormDefault="qualified"
-        xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-    <xsd:element name="gems" type="grit:gemsType" xmlns:grit="http://grits.by"/>
+        elementFormDefault="qualified">
+    <xsd:element xmlns:grit="http://grits.by" name="gems" type="grit:gemsType"/>
     <xsd:complexType name="visualParametersType">
         <xsd:sequence>
             <xsd:element name="color">
@@ -60,7 +60,7 @@
                     </xsd:restriction>
                 </xsd:simpleType>
             </xsd:element>
-            <xsd:element type="grit:visualParametersType" name="visualParameters" xmlns:grit="http://grits.by"/>
+            <xsd:element xmlns:grit="http://grits.by" type="grit:visualParametersType" name="visualParameters"/>
             <xsd:element name="value">
                 <xsd:simpleType>
                     <xsd:restriction base="xsd:double">
@@ -70,7 +70,7 @@
             <xsd:element name="addedAt">
                 <xsd:simpleType>
                     <xsd:restriction base="xsd:string">
-<!--                        <xsd:pattern value="[1-9][0-9]{3}\-.+?T[^\.]+?(Z|[\+\-].+)"/>-->
+                        <!--                        <xsd:pattern value="[1-9][0-9]{3}\-.+?T[^\.]+?(Z|[\+\-].+)"/>-->
                     </xsd:restriction>
                 </xsd:simpleType>
             </xsd:element>
@@ -79,8 +79,8 @@
     </xsd:complexType>
     <xsd:complexType name="gemsType">
         <xsd:sequence>
-            <xsd:element type="grit:gemType" name="gem" maxOccurs="unbounded" minOccurs="0"
-                         xmlns:grit="http://grits.by"/>
+            <xsd:element xmlns:grit="http://grits.by" type="grit:gemType" name="gem" maxOccurs="unbounded"
+                         minOccurs="0"/>
         </xsd:sequence>
     </xsd:complexType>
 </xsd:schema>

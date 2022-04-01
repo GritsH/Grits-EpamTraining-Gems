@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<gems  xmlns="http://grits.by"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://tempuri.org gems1.xsd">
+<gems xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns="http://grits.by"
+      xsi:schemaLocation="">
     <gem id="1">
         <name>Ruby</name>
         <preciousness>SEMI_PRECIOUS</preciousness>
