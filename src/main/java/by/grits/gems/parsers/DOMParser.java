@@ -33,17 +33,15 @@ public class DOMParser {
     document.getDocumentElement().normalize();
 
     NodeList gemNodes = document.getElementsByTagName("gem");
-    for (int gemNodesIterator = 0; gemNodesIterator < gemNodes.getLength(); gemNodesIterator++) {
+    for (int gemNodesIndx = 0; gemNodesIndx < gemNodes.getLength(); gemNodesIndx++) {
       gem = new Gem();
       VisualParameters visualParameters = new VisualParameters();
-      Node gemNode = gemNodes.item(gemNodesIterator);
+      Node gemNode = gemNodes.item(gemNodesIndx);
       Element element = (Element) gemNode;
       NodeList gemElements = gemNode.getChildNodes();
 
-      for (int gemElementsIterator = 0;
-          gemElementsIterator < gemElements.getLength();
-          gemElementsIterator++) {
-        Node gemElement = gemElements.item(gemElementsIterator);
+      for (int gemElementsIndx = 0; gemElementsIndx < gemElements.getLength(); gemElementsIndx++) {
+        Node gemElement = gemElements.item(gemElementsIndx);
         gem.setId(Integer.parseInt(element.getAttribute("id")));
         if ("name".equals(gemElement.getNodeName())) {
           gem.setName(gemElement.getTextContent());
@@ -65,10 +63,10 @@ public class DOMParser {
         }
         if ("visualParameters".equals(gemElement.getNodeName())) {
           NodeList parametersList = gemElement.getChildNodes();
-          for (int parametersIterator = 0;
-              parametersIterator < parametersList.getLength();
-              parametersIterator++) {
-            Node parametersElement = parametersList.item(parametersIterator);
+          for (int parametersIndx = 0;
+              parametersIndx < parametersList.getLength();
+              parametersIndx++) {
+            Node parametersElement = parametersList.item(parametersIndx);
             if ("color".equals(parametersElement.getNodeName())) {
               visualParameters.setColor(Color.valueOf(parametersElement.getTextContent()));
             }
