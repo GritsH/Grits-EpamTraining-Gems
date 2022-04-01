@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gems xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns="http://grits.by"
+      xsi:schemaLocation="">
+    <gem id="1">
+        <name>Quartz</name>
+        <preciousness>PRECIOUS</preciousness>
+        <origin>djdjdjdj</origin>
+        <visualParameters>
+            <color>BLACK</color>
+            <transparency>10</transparency>
+            <facesAmount>10</facesAmount>
+        </visualParameters>
+        <value>0.0</value>
+        <addedAt>2022-03-30 11:11:11</addedAt>
+    </gem>
+</gems>
